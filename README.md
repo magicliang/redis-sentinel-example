@@ -12,5 +12,6 @@ inspired by [https://github.com/vhf/redis-sentinel-docker-example].
 ## 启动方案
 
 ```bash
+# TODO：silent化，制作 sop 启动方式，attach 方式和日志切入方式
 docker-compose up
 ```
