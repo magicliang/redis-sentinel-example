@@ -18,8 +18,8 @@ services:
       - 26379
     volumes:
       # volume 标准
-      - ./.sentinel1.conf:/etc/sentinel.conf
-    command: redis-server /etc/sentinel.conf --sentinel
+      - ./sentinel1:/etc/redis-conf
+    command: redis-server /etc/redis-conf/sentinel.conf --sentinel
     networks:
       redis-sentinel-net:
         ipv4_address: 172.22.1.11
@@ -38,8 +38,8 @@ services:
     expose:
       - 26379
     volumes:
-      - ./.sentinel2.conf:/etc/sentinel.conf
-    command: redis-server /etc/sentinel.conf --sentinel
+      - ./sentinel2:/etc/redis-conf
+    command: redis-server /etc/redis-conf/sentinel.conf --sentinel
     networks:
       redis-sentinel-net:
         ipv4_address: 172.22.1.21
@@ -58,8 +58,9 @@ services:
     expose:
       - 26379
     volumes:
-      - ./.sentinel3.conf:/etc/sentinel.conf
-    command: redis-server /etc/sentinel.conf --sentinel
+      # 必须使用 绝对路径 /etc 下的文件夹，不能直接使用 etc
+      - ./sentinel3:/etc/redis-conf
+    command: redis-server /etc/redis-conf/sentinel.conf --sentinel
     networks:
       redis-sentinel-net:
         ipv4_address: 172.22.1.31
