@@ -3,6 +3,7 @@ services:
   # master
   redis1:
     image: redis:latest
+    # 没有写映射接口，就无法直接用 6379 发起连接
     expose:
       # redis node normal port
       - 6379
